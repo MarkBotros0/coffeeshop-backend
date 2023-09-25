@@ -1,0 +1,14 @@
+type Drink {
+	id: ID!
+	name: String!
+	availableForm: String!
+	availableTo: String!
+}
+
+type Query {
+	findAll: [Drink]!
+}
+
+type Mutation {
+	deleteDrink(id:ID!): Boolean
+}
