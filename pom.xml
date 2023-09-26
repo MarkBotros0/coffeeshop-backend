@@ -110,6 +110,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>spring-boot-coffeeshop-exe</finalName>
 	</build>
 
 </project>
