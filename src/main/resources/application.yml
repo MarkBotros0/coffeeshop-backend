@@ -1,0 +1,55 @@
+logging:
+  level:
+    org:
+      springframework: DEBUG
+      
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  config:
+      import: optional:file:.env[.properties]
+  main:
+    banner-mode: off
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/coffeeShop
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+##logging.level.org.springframework=DEBUG
+#server.port=8080
+##server.error.include-message=always
+#
+##endpoints availability
+##management.endpoints.web.exposure.include=beans,health,metrics,loggers,info
+#management.endpoints.web.exposure.include=*
+#management.endpoint.health.show-details=always
+##management.endpoint.loggers.enabled=true
+##management.endpoint.env.enabled=true
+#spring.main.banner-mode=off
+#
+## DataSource properties
+#spring.datasource.driver-class-name=org.postgresql.Driver
+#spring.datasource.url=jdbc:postgresql://localhost:5432/coffeeShop
+#spring.datasource.username=postgres
+#spring.datasource.password=root
+#
+## Hibernate properties
+#spring.jpa.hibernate.ddl-auto=create
+#spring.jpa.show-sql=true
+
+ 

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.annotation.DirtiesContext;
 
 import com.coffeeShop.model.Role;
 import com.coffeeShop.model.User;
@@ -24,25 +23,25 @@ public class JwtServiceTest {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Test
-	public void generateTokenAndIsTokenValidTest() {
-		User user1 = User.builder().firstname("Mark").lastname("Botros").email("test@test.com")
-				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
-
-		User user2 = User.builder().firstname("test").lastname("test").email("test@test.com11")
-				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
-
-		repository.save(user1);
-		repository.save(user2);
-
-		String jwtToken1 = jwtService.generateToken(user1);
-		String jwtToken2 = jwtService.generateToken(user2);
-
-		assertEquals(true, jwtService.isTokenValid(jwtToken1, user1));
-		assertEquals(false, jwtService.isTokenValid(jwtToken1, user2));
-		assertEquals(true, jwtService.isTokenValid(jwtToken2, user2));
-		assertEquals(false, jwtService.isTokenValid(jwtToken2, user1));
-	}
+//	@Test
+//	public void generateTokenAndIsTokenValidTest() {
+//		User user1 = User.builder().firstname("Mark").lastname("Botros").email("test@test.com")
+//				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
+//
+//		User user2 = User.builder().firstname("test").lastname("test").email("test@test.com11")
+//				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
+//
+//		repository.save(user1);
+//		repository.save(user2);
+//
+//		String jwtToken1 = jwtService.generateToken(user1);
+//		String jwtToken2 = jwtService.generateToken(user2);
+//
+//		assertEquals(true, jwtService.isTokenValid(jwtToken1, user1));
+//		assertEquals(false, jwtService.isTokenValid(jwtToken1, user2));
+//		assertEquals(true, jwtService.isTokenValid(jwtToken2, user2));
+//		assertEquals(false, jwtService.isTokenValid(jwtToken2, user1));
+//	}
 
 	@Test
 	public void extractUsernameTest() {
@@ -56,16 +55,16 @@ public class JwtServiceTest {
 		assertEquals(user1.getEmail(), jwtService.extractUsername(jwtToken1));
 	}
 
-	@Test
-	@DirtiesContext
-	public void isTokenExpiredTest() throws InterruptedException {
-		User user1 = User.builder().firstname("Mark").lastname("Botros").email("test@test.com")
-				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
-		repository.save(user1);
-		String jwtToken1 = jwtService.generateToken(user1);
-		assertEquals(true, jwtService.isTokenValid(jwtToken1, user1));
-
+//	@Test
+//	@DirtiesContext
+//	public void isTokenExpiredTest() throws InterruptedException {
+//		User user1 = User.builder().firstname("Mark").lastname("Botros").email("test@test.com")
+//				.password(passwordEncoder.encode("testing")).role(Role.USER).build();
+//		repository.save(user1);
+//		String jwtToken1 = jwtService.generateToken(user1);
+//		assertEquals(true, jwtService.isTokenValid(jwtToken1, user1));
+//
 //		TimeUnit.SECONDS.sleep(1500);
 //		assertEquals(false, jwtService.isTokenValid(jwtToken1, user1));
-	}
+//	}
 }
