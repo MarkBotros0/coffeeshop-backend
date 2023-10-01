@@ -16,19 +16,18 @@ management:
       show-details: always
 
 spring:
-  config:
-      import: optional:file:.env[.properties]
   main:
     banner-mode: off
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/coffeeShop
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${db_username}
+    password: ${db_password}
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
+
 
 ##logging.level.org.springframework=DEBUG
 #server.port=8080
